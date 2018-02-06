@@ -1,0 +1,2 @@
+20:57:42.538 [main] INFO  test.log.server.logHandler - execute class [test.audit.auditCenter@e383572],and funtion [modifyAdvertiser] Environment default [false for test] 
+20:57:45.591 [main] INFO  test.log.server.logHandler - execute class [test.audit.auditCenter@e383572],and funtion [modifyAdvertiser],and return [{}] 

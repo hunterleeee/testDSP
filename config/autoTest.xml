@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+        
+        <bean id="auditcenter" class="test.audit.auditCenter" >
+        	<constructor-arg name ="bhc" ref="basehttpclient"> </constructor-arg>
+        	<property name="environment" value="false"></property>
+        	<property name="header" >
+        	<map>
+	     		<entry key="Content-Type" value="application/json"></entry>
+	     		<entry key="token" value="web:doushishuaige"></entry>
+	     	</map></property>
+        </bean>
+        <bean id="basehttpclient" class="com.Interface.baseHttpClient" scope="singleton" />
+        <bean id="loghandler" class="test.log.server.logHandler" scope="singleton" />
+		<aop:config>
+              <!--  <aop:pointcut id="printTime" expression="execution(* AOP.test.HelloWorld*.doPrint(..))" />   
+                 声明一个切入点addAllMethod，注意  expression="execution(* AOP.test.HelloWorld.*(..))"  ;
+                 expression="execution(* AOP.test.HelloWorldImpl1.*(..))"  
+                 expression="execution(* AOP.test.HelloWorld.doPrint(..))"  -->
+              
+            <aop:aspect id="log" ref="loghandler" >
+            	<aop:pointcut id="auditLog" expression="execution(* test.audit.auditCenter.modify*(..))" />
+            	<aop:before method="modifyFunBefore"  pointcut-ref="auditLog"/>
+            	<aop:after-returning method="modifyFunAfter"  pointcut-ref="auditLog"  arg-names="joinPoint,retValue"  returning="retValue"/>
+            </aop:aspect>
+
+        </aop:config>
+        
+</beans>

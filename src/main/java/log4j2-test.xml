@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="30" status="warn">
+    <Properties> <!-- 配置日志文件输出目录，此配置将日志输出到tomcat根目录下的指定文件夹 -->
+        <Property name="useHome">${sys:user.home}/logs</Property> <!-- 写到系统用户目录 -->
+        <Property name="LOG_HOME">logs</Property> <!-- 写到系统用户目录 -->
+    </Properties>
+
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{16} - %msg %n"/>
+       <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+    </Console>
+    
+    <File name ="fileAuditlog" fileName="${LOG_HOME}/audit.log" append="false">
+          <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{16} - %msg %n"/>
+          <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+    </File>
+     <RollingFile name="RollingAuditlog" fileName="${LOG_HOME}/audit.txt"
+                      filePattern="${LOG_HOME}/audit/$${date:yyyy-MM-dd}/audit-%d{yyyy-MM-dd}.txt">
+             <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->       
+             <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+             <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %msg%n"/>
+             <Policies>
+                 <TimeBasedTriggeringPolicy/>
+                 <SizeBasedTriggeringPolicy size="10 MB"/>
+             </Policies>
+             <DefaultRolloverStrategy max="20"/>
+         </RollingFile>
+    
+  </Appenders>
+  <Loggers>
+    <Logger name="test.log.server" level="debug"  additivity="false"> <!--  logger中的level 和 ThresholdFilter的level共同控制，取高级别-->
+     	 <AppenderRef ref="Console"/>
+     	 <AppenderRef ref="fileAuditlog" />
+     	 <AppenderRef ref="RollingAuditlog"/>
+    </Logger>
+
+    <Root level="debug">
+      <AppenderRef ref="Console"/>
+    </Root>
+  </Loggers>
+</Configuration>

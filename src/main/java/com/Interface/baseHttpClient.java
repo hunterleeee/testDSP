@@ -29,12 +29,14 @@ public class baseHttpClient {
         StringBuffer resBuffer = new StringBuffer();
 		try {
 			connection = new URL(url).openConnection();
+//			connection.setRequestProperty("Accept-Charset", "GBK");
+//			connection.setRequestProperty("contentType", "GBK");
 	        connection.connect();
-	        BufferedReader read = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+	        BufferedReader read = new BufferedReader(new InputStreamReader(connection.getInputStream(),"UTF-8"));
 	        String templine =null;
 	        
 	        while((templine = read.readLine())!=null){
-	             resBuffer.append(templine);
+	             resBuffer.append(templine.toString());
 	        }
 	        read.close();
 		} catch (IOException e) {
