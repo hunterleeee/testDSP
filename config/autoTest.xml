@@ -18,19 +18,39 @@
 	     		<entry key="token" value="web:doushishuaige"></entry>
 	     	</map></property>
         </bean>
-        <bean id="basehttpclient" class="com.Interface.baseHttpClient" scope="singleton" />
+        
+        <bean id="basehttpclient" class="com.Interface.baseHttpClient" scope="singleton"  />
         <bean id="loghandler" class="test.log.server.logHandler" scope="singleton" />
+        <bean id="jilinparams" class="Tourism.jilin.jilinParams" scope="singleton" >
+        	<constructor-arg name="ak" value="48114bfdc3f5449a22ae46c2127f301c"  ></constructor-arg>
+        	<constructor-arg name="apiKey" value="88c9b35cbd893962b4f28561c0b70dfa"></constructor-arg>
+        	<property name="url_base" value="http://bdplus.baidu.com/commonapi"></property>
+        </bean>
+        <bean id="jilintourismserver" class="Tourism.jilin.jilinTourismServer" scope="singleton" >
+        	<constructor-arg name="bhc" ref="basehttpclient"  ></constructor-arg>
+        	<constructor-arg name="jlParams" ref="jilinparams"  ></constructor-arg>
+        </bean>
 		<aop:config>
               <!--  <aop:pointcut id="printTime" expression="execution(* AOP.test.HelloWorld*.doPrint(..))" />   
                  声明一个切入点addAllMethod，注意  expression="execution(* AOP.test.HelloWorld.*(..))"  ;
                  expression="execution(* AOP.test.HelloWorldImpl1.*(..))"  
                  expression="execution(* AOP.test.HelloWorld.doPrint(..))"  -->
-              
-            <aop:aspect id="log" ref="loghandler" >
-            	<aop:pointcut id="auditLog" expression="execution(* test.audit.auditCenter.modify*(..))" />
-            	<aop:before method="modifyFunBefore"  pointcut-ref="auditLog"/>
-            	<aop:after-returning method="modifyFunAfter"  pointcut-ref="auditLog"  arg-names="joinPoint,retValue"  returning="retValue"/>
+               
+            <aop:aspect id="log_audit" ref="loghandler" >
+            	<aop:pointcut id="auditLog_modify" expression="execution(* test.audit.auditCenter.modify*(..))" />
+            	<aop:before method="modifysAuditBefore"  pointcut-ref="auditLog_modify"/>
+            	<aop:after-returning method="modifyAuditAfter"  pointcut-ref="auditLog_modify"  arg-names="joinpoint,retValue"  returning="retValue"/>
+            	
+            	<aop:pointcut id="audit_set" expression="execution(* test.audit.auditCenter.set*(..))" />
+            	<aop:after method="setAuditAfter"  pointcut-ref="audit_set" arg-names="joinpoint"/>
             </aop:aspect>
+ 	<aop:aspect id="log_jilinToursem" ref="loghandler" >
+            	<aop:pointcut id="log_jilinToursem" expression="execution(* Tourism.jilin.jilinTourismServer.*(..))" />
+            	<aop:after-returning method="jilinTourisemAfter"  pointcut-ref="log_jilinToursem"  arg-names="joinpoint,retValue"  returning="retValue"/>
+            	
+            	
+            </aop:aspect>
+
 
         </aop:config>
         

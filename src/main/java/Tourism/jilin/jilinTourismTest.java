@@ -1,12 +1,16 @@
 package Tourism.jilin;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+
 import junit.framework.TestCase;
+import test.audit.auditCenter;
 
 public class jilinTourismTest extends TestCase {
 	jilinTourismServer jilinS=null;
 	public jilinTourismTest(){
-		jilinS= new jilinTourismServer();
-		
+		ApplicationContext context1 = new FileSystemXmlApplicationContext("E:\\Project\\Java\\testDSP\\config\\autoTest.xml");
+		this.jilinS= (jilinTourismServer) context1.getBean("jilintourismserver");	
 	}
 	
 	void testAreaList(){

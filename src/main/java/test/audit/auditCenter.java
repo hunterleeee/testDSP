@@ -18,7 +18,7 @@ import com.auto.test.auditTest;
 public class auditCenter {
 	private   baseHttpClient bhc=null;
 	public  boolean environment= false;
-	private final Logger logger =LogManager.getLogger(auditCenter.class.getName());
+//	private final Logger logger =LogManager.getLogger(auditCenter.class.getName());
 	
 	private final String test_urlAuToAuditingAdvertiser = "http://l-test9.dev.cn2.corp.agrant.cn:8080/AdxAuditRS/ForAutoAuditServlet?method=updateCustomerStatus&channelName=BAIDU";
 	private final String test_urlAuditingAdvertisement="http://l-test9.dev.cn2.corp.agrant.cn:8080/AdxAuditRS/ForAutoAuditServlet?method=updateCreativeStatus&channelName=JTX";

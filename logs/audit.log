@@ -1,2 +1,5 @@
-20:57:42.538 [main] INFO  test.log.server.logHandler - execute class [test.audit.auditCenter@e383572],and funtion [modifyAdvertiser] Environment default [false for test] 
-20:57:45.591 [main] INFO  test.log.server.logHandler - execute class [test.audit.auditCenter@e383572],and funtion [modifyAdvertiser],and return [{}] 
+20:53:15.708 [main] INFO  test.log.server.logHandler - class [StringBuffer Tourism.jilin.jilinTourismServer.test_searchTrendArea(String,String,String,String)] and args_1change to:9 
+20:53:15.710 [main] INFO  test.log.server.logHandler - class [StringBuffer Tourism.jilin.jilinTourismServer.test_searchTrendArea(String,String,String,String)] and args_2change to:2018-01-01 00:00:00 
+20:53:15.710 [main] INFO  test.log.server.logHandler - class [StringBuffer Tourism.jilin.jilinTourismServer.test_searchTrendArea(String,String,String,String)] and args_3change to:2018-01-02 00:00:00 
+20:53:15.711 [main] INFO  test.log.server.logHandler - class [StringBuffer Tourism.jilin.jilinTourismServer.test_searchTrendArea(String,String,String,String)] and args_4change to:0 
+20:53:15.712 [main] INFO  test.log.server.logHandler - execute class= [Tourism.jilin.jilinTourismServer@16ce702d],and funtion=[test_searchTrendArea],and return= [{"errno" : 102, "message" : "QuotaExeceed"}] 
