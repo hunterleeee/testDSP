@@ -1,5 +1,5 @@
-20:53:15.708 [main] INFO  test.log.server.logHandler - class [StringBuffer Tourism.jilin.jilinTourismServer.test_searchTrendArea(String,String,String,String)] and args_1change to:9 
-20:53:15.710 [main] INFO  test.log.server.logHandler - class [StringBuffer Tourism.jilin.jilinTourismServer.test_searchTrendArea(String,String,String,String)] and args_2change to:2018-01-01 00:00:00 
-20:53:15.710 [main] INFO  test.log.server.logHandler - class [StringBuffer Tourism.jilin.jilinTourismServer.test_searchTrendArea(String,String,String,String)] and args_3change to:2018-01-02 00:00:00 
-20:53:15.711 [main] INFO  test.log.server.logHandler - class [StringBuffer Tourism.jilin.jilinTourismServer.test_searchTrendArea(String,String,String,String)] and args_4change to:0 
-20:53:15.712 [main] INFO  test.log.server.logHandler - execute class= [Tourism.jilin.jilinTourismServer@16ce702d],and funtion=[test_searchTrendArea],and return= [{"errno" : 102, "message" : "QuotaExeceed"}] 
+15:36:53.701 [main] INFO  test.log.server.logHandler - class [StringBuffer Tourism.jilin.jilinTourismServer.test_searchTrendArea(String,String,String,String)] and args_1change to:9 
+15:36:53.702 [main] INFO  test.log.server.logHandler - class [StringBuffer Tourism.jilin.jilinTourismServer.test_searchTrendArea(String,String,String,String)] and args_2change to:2018-01-01 00:00:00 
+15:36:53.703 [main] INFO  test.log.server.logHandler - class [StringBuffer Tourism.jilin.jilinTourismServer.test_searchTrendArea(String,String,String,String)] and args_3change to:2018-01-02 00:00:00 
+15:36:53.703 [main] INFO  test.log.server.logHandler - class [StringBuffer Tourism.jilin.jilinTourismServer.test_searchTrendArea(String,String,String,String)] and args_4change to:0 
+15:36:53.704 [main] INFO  test.log.server.logHandler - execute class= [Tourism.jilin.jilinTourismServer@16ce702d],and funtion=[test_searchTrendArea],and return= [{"status":0,"msg":"","data":{"item":"吉林","itemRange":"20180101 ~ 20180102","datasource":"全部","items":[{"time":"20180101","searchCount":"217338"},{"time":"20180102","searchCount":"226162"}]}}] 

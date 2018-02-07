@@ -36,14 +36,14 @@ public class baseHttpClient {
 	        String templine =null;
 	        
 	        while((templine = read.readLine())!=null){
-	             resBuffer.append(templine.toString());
+	             resBuffer.append(templine);
 	        }
 	        read.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-      return resBuffer;
+      return decodUnicode(resBuffer.toString());
    }
 
 	/**
@@ -152,8 +152,21 @@ public class baseHttpClient {
 			e.printStackTrace();
 		}
 		return res;
-		
-		
+	}
+	public static StringBuffer decodUnicode(String utfString){
+	    StringBuffer sb = new StringBuffer();
+	    int i = -1;
+	    int pos = 0;
+	     
+	    while((i=utfString.indexOf("\\u", pos)) != -1){ //i 为有\\u的index号
+	        sb.append(utfString.substring(pos, i)); // 先把从index0~第一个之间的数入到新变量中 sb
+	        if(i+5 < utfString.length()){
+	            pos = i+6;
+	            sb.append((char)Integer.parseInt(utfString.substring(i+2, i+6), 16));
+	        }
+	    }   
+	    sb.append(utfString.substring(pos));
+	    return sb;
 	}
 	
 	public static void main(String[] args) throws MalformedURLException {
